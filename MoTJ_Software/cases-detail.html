@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Details</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cases-detail.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (Same as dashboard) -->
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <a href="dashboard.html">Dashboard</a>
+                    <span>/</span>
+                    <span id="detailPageTitle">Case Details</span>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="detail-header">
+                    <h2 id="pageTitle">Case Details</h2>
+                    <div class="header-actions">
+                        <button id="exportBtn" class="btn-outline">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button id="printBtn" class="btn-outline">
+                            <i class="fas fa-print"></i> Print
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <input type="text" id="caseNumberSearch" placeholder="Search by Case Number">
+                    
+                    <select id="organizationFilter">
+                        <option value="">All Organizations</option>
+                        <option value="MoTJ">Ministry of Textiles and Jute (MoTJ)</option>
+                        <option value="BHB">Bangladesh Handloom Board</option>
+                        <option value="BSB">Bangladesh Sericulture Board</option>
+                        <option value="JMC">Jute Mills Corporation</option>
+                    </select>
+                    
+                    <select id="caseTypeFilter">
+                        <option value="">All Case Types</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Criminal">Criminal</option>
+                        <option value="Writ">Writ</option>
+                    </select>
+                    
+                    <select id="courtFilter">
+                        <option value="">All Courts</option>
+                        <option value="Supreme Court">Supreme Court</option>
+                        <option value="High Court">High Court</option>
+                        <option value="District Court">District Court</option>
+                    </select>
+                    
+                    <select id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Disposed">Disposed</option>
+                        <option value="Adjourned">Adjourned</option>
+                    </select>
+                    
+                    <input type="date" id="dateFilter">
+                    <button id="resetFilters">Reset Filters</button>
+                </div>
+                
+                <!-- Cases Table -->
+                <table id="casesTable">
+                    <thead>
+                        <tr>
+                            <th>Case No.</th>
+                            <th>Organization</th>
+                            <th>Case Type</th>
+                            <th>Court</th>
+                            <th>Status</th>
+                            <th>Hearing Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="casesTableBody">
+                        <!-- Cases will be loaded here dynamically -->
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span id="pageInfo">Page 1 of 5</span>
+                    <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/cases-detail.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

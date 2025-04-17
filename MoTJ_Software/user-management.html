@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Smart Case Management</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <!-- ... -->
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>User Management</span>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="btn-primary" id="addUserBtn">
+                        <i class="fas fa-plus"></i> Add New User
+                    </button>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <h2 class="page-title">User Management</h2>
+                
+                <!-- User Filters -->
+                <div class="filter-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="roleFilter">Role:</label>
+                            <select id="roleFilter">
+                                <option value="all">All Roles</option>
+                                <option value="admin">Administrator</option>
+                                <option value="department">Department Officer</option>
+                                <option value="lawyer">Lawyer</option>
+                                <option value="public">Public User</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Statuses</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="searchUser">Search:</label>
+                            <input type="text" id="searchUser" placeholder="Name or username...">
+                        </div>
+                        
+                        <button class="btn-apply" id="applyFilters">Apply Filters</button>
+                        <button class="btn-reset" id="resetFilters">Reset</button>
+                    </div>
+                </div>
+                
+                <!-- Users Table -->
+                <div class="data-section">
+                    <table class="data-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>admin_user</td>
+                                <td>Admin User</td>
+                                <td>admin@textiles.gov.bd</td>
+                                <td>Administrator</td>
+                                <td>Ministry of Textiles</td>
+                                <td>10 Apr 2023 08:30</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>dept_officer</td>
+                                <td>Department Officer</td>
+                                <td>officer@textiles.gov.bd</td>
+                                <td>Department</td>
+                                <td>Department of Jute</td>
+                                <td>12 Apr 2023 10:15</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>lawyer_rahman</td>
+                                <td>Advocate Rahman</td>
+                                <td>rahman@lawfirm.com</td>
+                                <td>Lawyer</td>
+                                <td>External</td>
+                                <td>05 Apr 2023 14:45</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>public_user</td>
+                                <td>Public User</td>
+                                <td>user@example.com</td>
+                                <td>Public</td>
+                                <td>N/A</td>
+                                <td>28 Mar 2023 16:20</td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                                <td>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="table-footer">
+                        <div class="pagination-info">
+                            Showing <span id="startItem">1</span> to <span id="endItem">4</span> of <span id="totalItems">4</span> entries
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-pagination" id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+                            <span class="page-numbers">
+                                <button class="page-btn active">1</button>
+                            </span>
+                            <button class="btn-pagination" id="nextPage" disabled><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit User Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New User</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" required>
+                                <option value="">Select Role</option>
+                                <option value="admin">Administrator</option>
+                                <option value="department">Department Officer</option>
+                                <option value="lawyer">Lawyer</option>
+                                <option value="public">Public User</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department">
+                                <option value="">Select Department</option>
+                                <option value="motj">Ministry of Textiles</option>
+                                <option value="jute">Department of Jute</option>
+                                <option value="handloom">Handloom Board</option>
+                                <option value="silk">Sericulture Board</option>
+                                <option value="external">External</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel close-modal">Cancel</button>
+                        <button type="submit" class="btn-submit">Save User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/user-management.js"></script>
+</body>
+</html>

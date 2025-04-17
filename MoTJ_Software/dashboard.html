@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>Dashboard</span>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="btn-notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <h2 class="page-title">Dashboard Overview</h2>
+
+                <!-- Search Section -->
+<!-- Search Section -->
+<div class="search-section">
+    <form id="searchForm" action="search.html" method="get">
+        <div class="filter-section">
+            <input type="text" id="caseNumberSearch" name="caseNumber" placeholder="Search by Case Number">
+
+            <select id="organizationFilter" name="organization">
+                <option value="">All Organizations</option>
+                <option value="MoTJ">Ministry of Textiles and Jute (MoTJ)</option>
+                <option value="BHB">Bangladesh Handloom Board</option>
+                <option value="BSB">Bangladesh Sericulture Board</option>
+                <option value="JMC">Jute Mills Corporation</option>
+            </select>
+
+            <select id="caseTypeFilter" name="caseType">
+                <option value="">All Case Types</option>
+                <option value="Civil">Civil</option>
+                <option value="Criminal">Criminal</option>
+                <option value="Writ">Writ</option>
+            </select>
+
+            <select id="statusFilter" name="status">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Disposed">Disposed</option>
+                <option value="Adjourned">Adjourned</option>
+            </select>
+
+            <div class="date-range-filter">
+                <div class="date-input">
+                    <label for="dateFrom">From Date</label>
+                    <input type="date" id="dateFrom" name="dateFrom">
+                </div>
+                <div class="date-input">
+                    <label for="dateTo">To Date</label>
+                    <input type="date" id="dateTo" name="dateTo">
+                </div>
+            </div>
+
+            <select id="courtFilter" name="court">
+                <option value="">All Courts</option>
+                <option value="Supreme Court">Supreme Court</option>
+                <option value="High Court">High Court</option>
+                <option value="District Court">District Court</option>
+            </select>
+
+            <button type="submit" id="searchBtn">Search</button>
+            <button type="button" id="resetFilters">Reset Filters</button>
+        </div>
+    </form>
+</div>
+
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <a href="cases-detail.html?filter=total" class="stat-card">
+                        <div class="stat-icon bg-primary">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,245</h3>
+                            <p>Total Cases</p>
+                        </div>
+                    </a>
+
+                    <a href="cases-detail.html?filter=today" class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15</h3>
+                            <p>Today's Cases</p>
+                        </div>
+                    </a>
+
+                    <a href="cases-detail.html?filter=upcoming" class="stat-card">
+                        <div class="stat-icon bg-danger">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>42</h3>
+                            <p>Upcoming Hearings</p>
+                        </div>
+                    </a>
+
+                    <a href="cases-detail.html?filter=active" class="stat-card">
+                        <div class="stat-icon bg-warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>369</h3>
+                            <p>Active Cases</p>
+                        </div>
+                    </a>
+
+                    <a href="cases-detail.html?filter=closed" class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>876</h3>
+                            <p>Closed Cases</p>
+                        </div>
+                    </a>
+
+                    <a href="cases-detail.html?filter=7days" class="stat-card">
+                        <div class="stat-icon bg-secondary">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>28</h3>
+                            <p>7 Days Ago Cases</p>
+                        </div>
+                    </a>
+
+                </div>
+
+
+                <!-- Today's Hearing Cases Section -->
+                <div class="dashboard-container">
+                    <div class="today_head">
+                        <h1>Today's Hearing Cases</h1>
+                        <a href="cases-detail.html?filter=total" class="view-all">View All</a>
+                    </div>
+                    <!-- Search & Filter Section -->
+                    <div class="filter-section today_search">
+                        <input type="text" id="caseNumberSearch" placeholder="Search by Case Number">
+
+                        <select id="organizationFilter">
+                            <option value="">All Organizations</option>
+                            <option value="MoTJ">Ministry of Textiles and Jute (MoTJ)</option>
+                            <option value="BHB">Bangladesh Handloom Board</option>
+                            <option value="BSB">Bangladesh Sericulture Board</option>
+                            <option value="JMC">Jute Mills Corporation</option>
+                        </select>
+
+                        <select id="caseTypeFilter">
+                            <option value="">All Case Types</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Criminal">Criminal</option>
+                            <option value="Writ">Writ</option>
+                        </select>
+
+                        <select id="courtFilter">
+                            <option value="">All Courts</option>
+                            <option value="Supreme Court">Supreme Court</option>
+                            <option value="High Court">High Court</option>
+                            <option value="District Court">District Court</option>
+                        </select>
+
+                        <select id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Disposed">Disposed</option>
+                            <option value="Adjourned">Adjourned</option>
+                        </select>
+
+                        <input type="date" id="dateFilter">
+                        <button id="resetFilters">Reset Filters</button>
+                    </div>
+
+                    <!-- Cases Table -->
+                    <table id="casesTable">
+                        <thead>
+                            <tr>
+                                <th>Case No.</th>
+                                <th>Organization</th>
+                                <th>Case Type</th>
+                                <th>Court</th>
+                                <th>Status</th>
+                                <th>Hearing Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="casesTableBody">
+                            <!-- Cases will be loaded here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- Upcoming Hearings Section -->
+                <div class="upcoming-hearings">
+                    <div class="section-header">
+                        <h3>Upcoming Hearings</h3>
+                        <a href="court-types.html?tab=hearing" class="view-all">View All</a>
+                    </div>
+
+                    <div class="hearings-list">
+                        <div class="hearing-item">
+                            <div class="hearing-date">
+                                <span class="day">25</span>
+                                <span class="month">Apr</span>
+                            </div>
+                            <div class="hearing-info">
+                                <h4>Case #SCM-2023-001</h4>
+                                <p>Worker Compensation Claim</p>
+                                <div class="hearing-meta">
+                                    <span><i class="fas fa-gavel"></i> Labor Court Dhaka</span>
+                                    <span><i class="fas fa-user-tie"></i> Adv. Rahman</span>
+                                </div>
+                            </div>
+                            <div class="hearing-actions">
+                                <button class="btn-outline btn-sm">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="hearing-item">
+                            <div class="hearing-date">
+                                <span class="day">18</span>
+                                <span class="month">Apr</span>
+                            </div>
+                            <div class="hearing-info">
+                                <h4>Case #SCM-2023-045</h4>
+                                <p>Land Dispute Resolution</p>
+                                <div class="hearing-meta">
+                                    <span><i class="fas fa-gavel"></i> Civil Court Chittagong</span>
+                                    <span><i class="fas fa-user-tie"></i> Adv. Chowdhury</span>
+                                </div>
+                            </div>
+                            <div class="hearing-actions">
+                                <button class="btn-outline btn-sm">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Cases Table -->
+                <div class="recent-cases">
+                    <div class="section-header">
+                        <h3>Recent Cases</h3>
+                        <a href="case-management.html" class="view-all">View All</a>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Case No.</th>
+                                <th>Case Type</th>
+                                <th>Court</th>
+                                <th>Status</th>
+                                <th>Next Hearing</th>
+                                <th>Lawyer</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SCM-2023-001</td>
+                                <td>Labor</td>
+                                <td>Labor Court Dhaka</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>15 Apr 2023</td>
+                                <td>Adv. Rahman</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SCM-2023-045</td>
+                                <td>Civil</td>
+                                <td>Civil Court Chittagong</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>18 Apr 2023</td>
+                                <td>Adv. Chowdhury</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SCM-2023-112</td>
+                                <td>High Court</td>
+                                <td>High Court Division</td>
+                                <td><span class="status-badge closed">Closed</span></td>
+                                <td>-</td>
+                                <td>Adv. Khan</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SCM-2023-078</td>
+                                <td>Contingent</td>
+                                <td>Special Court Dhaka</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>20 Apr 2023</td>
+                                <td>Adv. Ahmed</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- All Organizations Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3>All Organizations</h3>
+                        <a href="cases-detail.html?filter=all" class="view-all">View All Cases</a>
+                    </div>
+
+                    <div class="organizations-grid" id="organizationsGrid">
+                        <!-- Organizations will be loaded dynamically -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

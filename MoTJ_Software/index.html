@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Smart Case Management</title>
+        <!-- MAIN CSS FIRST -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- MODULE CSS SECOND -->
+        <link rel="stylesheet" href="css/dashboard.css">
+        <!-- FONT AWESOME -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script>
+            // Simple login override for testing
+            function handleLogin() {
+              const username = document.getElementById('username').value;
+              const password = document.getElementById('password').value;
+              
+              // Basic validation
+              if(username && password) {
+                window.location.href = "dashboard.html";
+              } else {
+                alert("Please enter both username and password");
+              }
+            }
+            
+            // Attach to form
+            document.getElementById('loginForm').onsubmit = function(e) {
+              e.preventDefault();
+              handleLogin();
+            };
+            </script>
+    </head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="assets/logo.png" alt="Ministry of Textiles and Jute Logo">
+            <h1>Smart Case Management System</h1>
+            <p>Ministry of Textiles and Jute, Bangladesh</p>
+        </div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            
+            <div class="form-options">
+                <label>
+                    <input type="checkbox" id="rememberMe"> Remember me
+                </label>
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        
+        <div id="otpSection" class="otp-section hidden">
+            <h3>Enter OTP</h3>
+            <p>We've sent an OTP to your registered email</p>
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" class="otp-digit">
+                <input type="text" maxlength="1" class="otp-digit">
+                <input type="text" maxlength="1" class="otp-digit">
+                <input type="text" maxlength="1" class="otp-digit">
+                <input type="text" maxlength="1" class="otp-digit">
+                <input type="text" maxlength="1" class="otp-digit">
+            </div>
+            <button id="verifyOtp" class="btn-verify">Verify OTP</button>
+            <p class="resend-otp">Didn't receive OTP? <a href="#" id="resendOtp">Resend</a></p>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Hearing Cases</title>
+    <link rel="stylesheet" href="today-hearing.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Today's Hearing Cases</h1>
+        
+        <!-- Search & Filter Section -->
+        <div class="filter-section">
+            <input type="text" id="caseNumberSearch" placeholder="Search by Case Number">
+            
+            <select id="organizationFilter">
+                <option value="">All Organizations</option>
+                <option value="MoTJ">Ministry of Textiles and Jute (MoTJ)</option>
+                <option value="BHB">Bangladesh Handloom Board</option>
+                <option value="BSB">Bangladesh Sericulture Board</option>
+                <option value="JMC">Jute Mills Corporation</option>
+            </select>
+            
+            <select id="caseTypeFilter">
+                <option value="">All Case Types</option>
+                <option value="Civil">Civil</option>
+                <option value="Criminal">Criminal</option>
+                <option value="Writ">Writ</option>
+            </select>
+            
+            <select id="courtFilter">
+                <option value="">All Courts</option>
+                <option value="Supreme Court">Supreme Court</option>
+                <option value="High Court">High Court</option>
+                <option value="District Court">District Court</option>
+            </select>
+            
+            <select id="statusFilter">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Disposed">Disposed</option>
+                <option value="Adjourned">Adjourned</option>
+            </select>
+            
+            <input type="date" id="dateFilter">
+            <button id="resetFilters">Reset Filters</button>
+        </div>
+        
+        <!-- Cases Table -->
+        <table id="casesTable">
+            <thead>
+                <tr>
+                    <th>Case No.</th>
+                    <th>Organization</th>
+                    <th>Case Type</th>
+                    <th>Court</th>
+                    <th>Status</th>
+                    <th>Hearing Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="casesTableBody">
+                <!-- Cases will be loaded here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="today-hearing.js"></script>
+</body>
+</html>

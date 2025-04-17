@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations - Smart Case Management</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <!-- ... -->
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>Organizations</span>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="btn-primary" id="addOrgBtn">
+                        <i class="fas fa-plus"></i> Add Organization
+                    </button>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <h2 class="page-title">Organizations Management</h2>
+                
+                <!-- Organization Filters -->
+                <div class="filter-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="typeFilter">Type:</label>
+                            <select id="typeFilter">
+                                <option value="all">All Types</option>
+                                <option value="ministry">Ministry</option>
+                                <option value="department">Department</option>
+                                <option value="board">Board</option>
+                                <option value="corporation">Corporation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="searchOrg">Search:</label>
+                            <input type="text" id="searchOrg" placeholder="Organization name...">
+                        </div>
+                        
+                        <button class="btn-apply" id="applyFilters">Apply Filters</button>
+                        <button class="btn-reset" id="resetFilters">Reset</button>
+                    </div>
+                </div>
+                
+                <!-- Organizations Table -->
+                <div class="data-section">
+                    <table class="data-table" id="orgsTable">
+                        <thead>
+                            <tr>
+                                <th>Acronym</th>
+                                <th>Organization Name</th>
+                                <th>Type</th>
+                                <th>Contact Person</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Total Cases</th>
+                                <th>Active Cases</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MoTJ</td>
+                                <td>Ministry of Textiles and Jute</td>
+                                <td>Ministry</td>
+                                <td>Mr. Rahman</td>
+                                <td>contact@motj.gov.bd</td>
+                                <td>+880 2 1234567</td>
+                                <td>45</td>
+                                <td>12</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DoJ</td>
+                                <td>Department of Jute</td>
+                                <td>Department</td>
+                                <td>Ms. Chowdhury</td>
+                                <td>info@jute.gov.bd</td>
+                                <td>+880 2 7654321</td>
+                                <td>32</td>
+                                <td>8</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BHB</td>
+                                <td>Bangladesh Handloom Board</td>
+                                <td>Board</td>
+                                <td>Mr. Khan</td>
+                                <td>contact@handloom.gov.bd</td>
+                                <td>+880 2 9876543</td>
+                                <td>18</td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BSB</td>
+                                <td>Bangladesh Sericulture Board</td>
+                                <td>Board</td>
+                                <td>Ms. Ahmed</td>
+                                <td>info@silk.gov.bd</td>
+                                <td>+880 2 5678912</td>
+                                <td>15</td>
+                                <td>3</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>JMC</td>
+                                <td>Jute Mills Corporation</td>
+                                <td>Corporation</td>
+                                <td>Mr. Hossain</td>
+                                <td>contact@jutemills.gov.bd</td>
+                                <td>+880 2 3456789</td>
+                                <td>28</td>
+                                <td>10</td>
+                                <td>
+                                    <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="table-footer">
+                        <div class="pagination-info">
+                            Showing <span id="startItem">1</span> to <span id="endItem">5</span> of <span id="totalItems">5</span> entries
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-pagination" id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+                            <span class="page-numbers">
+                                <button class="page-btn active">1</button>
+                            </span>
+                            <button class="btn-pagination" id="nextPage" disabled><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Organization Modal -->
+    <div class="modal" id="orgModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Organization</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="orgForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="orgName">Organization Name</label>
+                            <input type="text" id="orgName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orgAcronym">Acronym</label>
+                            <input type="text" id="orgAcronym" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="orgType">Type</label>
+                            <select id="orgType" required>
+                                <option value="">Select Type</option>
+                                <option value="ministry">Ministry</option>
+                                <option value="department">Department</option>
+                                <option value="board">Board</option>
+                                <option value="corporation">Corporation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person</label>
+                            <input type="text" id="contactPerson" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="orgEmail">Email</label>
+                            <input type="email" id="orgEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orgPhone">Phone</label>
+                            <input type="tel" id="orgPhone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="orgAddress">Address</label>
+                        <textarea id="orgAddress" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel close-modal">Cancel</button>
+                        <button type="submit" class="btn-submit">Save Organization</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/organizations.js"></script>
+</body>
+</html>

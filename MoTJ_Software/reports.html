@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Smart Case Management</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add these to your head section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <!-- ... -->
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>Reports</span>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="btn-primary" id="generateReport">
+                        <i class="fas fa-file-export"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <h2 class="page-title">Case Management Reports</h2>
+
+                <!-- Report Filters -->
+                <div class="filter-section">
+                    <form id="reportFilters">
+                        <div class="filter-row">
+                            <div class="form-group">
+                                <label for="reportType">Report Type</label>
+                                <select id="reportType" required>
+                                    <option value="">Select Report Type</option>
+                                    <option value="case_status">Case Status Report</option>
+                                    <option value="court_wise">Court-wise Distribution</option>
+                                    <option value="org_wise">Organization-wise Cases</option>
+                                    <option value="lawyer_performance">Lawyer Performance</option>
+                                    <option value="hearing_schedule">Hearing Schedule</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportDateFrom">From Date</label>
+                                <input type="date" id="reportDateFrom">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportDateTo">To Date</label>
+                                <input type="date" id="reportDateTo">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportFormat">Format</label>
+                                <select id="reportFormat" required>
+                                    <option value="web">View in Browser</option>
+                                    <option value="pdf">Download PDF</option>
+                                    <option value="csv">Download CSV</option>
+                                    <option value="excel">Download Excel</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Report Results -->
+                <div class="report-results">
+                    <div class="report-section">
+                        <div class="section-header">
+                            <h3>Case Status Summary</h3>
+                            <!-- <div class="report-actions">
+                                <button class="btn-outline"><i class="fas fa-print"></i> Print</button>
+                                <button class="btn-outline"><i class="fas fa-download"></i> Download</button>
+                            </div> -->
+                        </div>
+
+                        <div class="report-data">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Case Type</th>
+                                        <th>Total Cases</th>
+                                        <th>Active</th>
+                                        <th>Pending</th>
+                                        <th>Closed</th>
+                                        <th>% Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Labor Court</td>
+                                        <td>395</td>
+                                        <td>120</td>
+                                        <td>45</td>
+                                        <td>230</td>
+                                        <td>58.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Civil Court</td>
+                                        <td>297</td>
+                                        <td>85</td>
+                                        <td>32</td>
+                                        <td>180</td>
+                                        <td>60.6%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High Court</td>
+                                        <td>360</td>
+                                        <td>110</td>
+                                        <td>50</td>
+                                        <td>200</td>
+                                        <td>55.6%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contingent</td>
+                                        <td>193</td>
+                                        <td>54</td>
+                                        <td>29</td>
+                                        <td>110</td>
+                                        <td>57.0%</td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td><strong>Total</strong></td>
+                                        <td><strong>1,245</strong></td>
+                                        <td><strong>369</strong></td>
+                                        <td><strong>156</strong></td>
+                                        <td><strong>720</strong></td>
+                                        <td><strong>57.8%</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Replace the "Organization-wise Case Distribution" section with this: -->
+                    <div class="report-section">
+                        <div class="section-header">
+                            <h3>Organization-wise Case Distribution</h3>
+                            <div class="report-actions">
+                                <button class="btn-outline" id="printOrgReport"><i class="fas fa-print"></i>
+                                    Print</button>
+                                <button onclick="document.getElementById('popup').style.display='block'"
+                                    class="btn-outline" id="downloadOrgReport"><i class="fas fa-download"></i>
+                                    Download</button>
+                            </div>
+                            <div id="popup" onclick="this.style.display='none'">
+                                <img src="assets/report.jpg" alt="Popup Image" style="margin-bottom: 20px !important;">
+                            </div>
+                        </div>
+
+                        <div class="report-data">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Department / Agency</th>
+                                        <th colspan="2">Cases up to Last Month</th>
+                                        <th colspan="2">New Cases This Month</th>
+                                        <th rowspan="2">Total Cases Received</th>
+                                        <th colspan="2">Cases Disposed (in-favor)</th>
+                                        <th colspan="2">Cases Disposed (against)</th>
+                                        <th rowspan="2">Total Disposed</th>
+                                        <th rowspan="2">Pending at Month-End</th>
+                                    </tr>
+                                    <tr>
+                                        <th>High Court</th>
+                                        <th>Lower Court</th>
+                                        <th>High Court</th>
+                                        <th>Lower Court</th>
+                                        <th>High Court</th>
+                                        <th>Lower Court</th>
+                                        <th>High Court</th>
+                                        <th>Lower Court</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bangladesh Jute Mills Corporation (BJMC)</td>
+                                        <td>355</td>
+                                        <td>406</td>
+                                        <td>2</td>
+                                        <td>6</td>
+                                        <td>769</td>
+                                        <td>2</td>
+                                        <td>–</td>
+                                        <td>2</td>
+                                        <td>–</td>
+                                        <td>4</td>
+                                        <td>765</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bangladesh Textile Mills Corporation (BTMC)</td>
+                                        <td>126</td>
+                                        <td>151</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>277</td>
+                                        <td>8</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>8</td>
+                                        <td>269</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bangladesh Jute Board</td>
+                                        <td>1</td>
+                                        <td>6</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>15</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jute Research Institute (JRI)</td>
+                                        <td>13</td>
+                                        <td>151</td>
+                                        <td>–</td>
+                                        <td>1</td>
+                                        <td>245</td>
+                                        <td>1</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>–</td>
+                                        <td>1</td>
+                                        <td>244</td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td><strong>Grand Total (all cases)</strong></td>
+                                        <td><strong>1,418</strong></td>
+                                        <td><strong>–</strong></td>
+                                        <td><strong>9</strong></td>
+                                        <td><strong>–</strong></td>
+                                        <td><strong>1,427</strong></td>
+                                        <td><strong>11</strong></td>
+                                        <td><strong>–</strong></td>
+                                        <td><strong>2</strong></td>
+                                        <td><strong>–</strong></td>
+                                        <td><strong>–</strong></td>
+                                        <td><strong>1,414</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+
+</html>

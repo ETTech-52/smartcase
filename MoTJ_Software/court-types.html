@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Types - Smart Case Management</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <!-- ... -->
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>Court Types</span>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <h2 class="page-title">Court Types Management</h2>
+                
+                <!-- Court Types Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="labor">Labor Court</button>
+                        <button class="tab-btn" data-tab="civil">Civil Court</button>
+                        <button class="tab-btn" data-tab="high">High Court</button>
+                        <button class="tab-btn" data-tab="contingent">Contingent Cases</button>
+                        <button class="tab-btn" data-tab="hearing">Hearing Tracker</button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <!-- Labor Court Tab -->
+                        <div class="tab-pane active" id="labor-tab">
+                            <div class="tab-header">
+                                <h3>Labor Court Cases</h3>
+                                <div class="tab-actions">
+                                    <button class="btn-export"><i class="fas fa-file-export"></i> Export</button>
+                                    <button class="btn-refresh"><i class="fas fa-sync-alt"></i> Refresh</button>
+                                </div>
+                            </div>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Case No.</th>
+                                        <th>Title</th>
+                                        <th>Court</th>
+                                        <th>Status</th>
+                                        <th>Filing Date</th>
+                                        <th>Next Hearing</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LC-2023-001</td>
+                                        <td>Worker Compensation Claim</td>
+                                        <td>Labor Court Dhaka</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                        <td>15 Jan 2023</td>
+                                        <td>25 Apr 2023</td>
+                                        <td>
+                                            <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                    <!-- More rows... -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Civil Court Tab -->
+                        <div class="tab-pane" id="civil-tab">
+                            <!-- Similar structure as labor court tab -->
+                        </div>
+                        
+                        <!-- High Court Tab -->
+                        <div class="tab-pane" id="high-tab">
+                            <!-- Similar structure as labor court tab -->
+                        </div>
+                        
+                        <!-- Contingent Cases Tab -->
+                        <div class="tab-pane" id="contingent-tab">
+                            <!-- Similar structure as labor court tab -->
+                        </div>
+                        
+                        <!-- Hearing Tracker Tab -->
+                        <div class="tab-pane" id="hearing-tab">
+                            <div class="tab-header">
+                                <h3>Hearing Tracker</h3>
+                                <div class="tab-actions">
+                                    <button class="btn-primary" id="addHearingBtn">
+                                        <i class="fas fa-plus"></i> Add Hearing
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="hearing-filters">
+                                <div class="filter-row">
+                                    <div class="filter-group">
+                                        <label for="hearingCourtFilter">Court:</label>
+                                        <select id="hearingCourtFilter">
+                                            <option value="all">All Courts</option>
+                                            <option value="labor">Labor Court</option>
+                                            <option value="civil">Civil Court</option>
+                                            <option value="high">High Court</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="filter-group">
+                                        <label for="hearingDateFilter">Date Range:</label>
+                                        <input type="date" id="hearingStartDate">
+                                        <span>to</span>
+                                        <input type="date" id="hearingEndDate">
+                                    </div>
+                                    
+                                    <button class="btn-apply" id="applyHearingFilters">Apply</button>
+                                </div>
+                            </div>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Case No.</th>
+                                        <th>Title</th>
+                                        <th>Court</th>
+                                        <th>Hearing Date</th>
+                                        <th>Hearing Type</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LC-2023-001</td>
+                                        <td>Worker Compensation Claim</td>
+                                        <td>Labor Court Dhaka</td>
+                                        <td>25 Apr 2023</td>
+                                        <td>Regular</td>
+                                        <td><span class="status-badge upcoming">Upcoming</span></td>
+                                        <td>
+                                            <button class="btn-action view"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                    <!-- More rows... -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Hearing Modal -->
+    <div class="modal" id="hearingModal">
+        <!-- Modal structure similar to case modal -->
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/court-types.js"></script>
+</body>
+</html>

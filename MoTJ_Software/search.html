@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Cases - Smart Case Management</title>
+    <!-- MAIN CSS FIRST -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- MODULE CSS SECOND -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo-small.png" alt="Logo">
+                <h3>Smart Case Management</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="case-management.html"><i class="fas fa-folder-open"></i> Case Management</a></li>
+                <li><a href="court-types.html"><i class="fas fa-gavel"></i> Court Types</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search Cases</a></li>
+                <li><a href="user-management.html"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">Admin User</span>
+                        <span class="role">Administrator</span>
+                    </div>
+                </div>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <!-- ... -->
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="breadcrumb">
+                    <span>Search Cases</span>
+                </div>
+            </div>
+            
+            <div class="content-wrapper">
+                <h2 class="page-title">Search Cases</h2>
+                
+                <!-- Search Section -->
+                <div class="search-section">
+                    <div class="search-box-large">
+                        <input type="text" id="mainSearch" placeholder="Search by case number, title, or keywords...">
+                        <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+                    </div>
+                    
+                    <div class="advanced-search-toggle">
+                        <a href="#" id="toggleAdvanced">Advanced Search Options <i class="fas fa-chevron-down"></i></a>
+                    </div>
+                    
+                    <div class="advanced-search" id="advancedSearch">
+                        <div class="advanced-filters">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="searchCaseType">Court Type</label>
+                                    <select id="searchCaseType">
+                                        <option value="">All Types</option>
+                                        <option value="labor">Labor Court</option>
+                                        <option value="civil">Civil Court</option>
+                                        <option value="high">High Court</option>
+                                        <option value="contingent">Contingent Case</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="searchCourt">Case Type</label>
+                                    <input type="text" id="searchCourt" placeholder="Court name...">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="searchStatus">Status</label>
+                                    <select id="searchStatus">
+                                        <option value="">All Statuses</option>
+                                        <option value="active">Active</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="searchDateFrom">Date From</label>
+                                    <input type="date" id="searchDateFrom">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="searchDateTo">Date To</label>
+                                    <input type="date" id="searchDateTo">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="searchLawyer">Lawyer</label>
+                                    <input type="text" id="searchLawyer" placeholder="Lawyer name...">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="searchOrg">Organization</label>
+                                    <select id="searchOrg">
+                                        <option value="">All Organizations</option>
+                                        <option value="motj">MoTJ</option>
+                                        <option value="jute-dept">Dept. of Jute</option>
+                                        <option value="handloom">Bangladesh Handloom Board</option>
+                                        <option value="silk">Bangladesh Sericulture Board</option>
+                                        <option value="jute-mills">Jute Mills Corp</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="searchLocation">Location</label>
+                                    <input type="text" id="searchLocation" placeholder="Location...">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="search-actions">
+                            <button class="btn-search" id="advancedSearchBtn">Search</button>
+                            <button class="btn-reset" id="resetSearchBtn">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Results -->
+                <div class="search-results" id="searchResults">
+                    <div class="results-header">
+                        <h3>Search Results</h3>
+                        <div class="results-actions">
+                            <button class="btn-export"><i class="fas fa-file-pdf"></i> Export to PDF</button>
+                            <button class="btn-export"><i class="fas fa-file-csv"></i> Export to CSV</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-info">
+                        <p>Showing <span id="resultsCount">0</span> results</p>
+                    </div>
+                    
+                    <table class="data-table" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Case No.</th>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Court</th>
+                                <th>Status</th>
+                                <th>Filing Date</th>
+                                <th>Next Hearing</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Results will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    
+                    <div class="no-results" id="noResults">
+                        <i class="fas fa-search"></i>
+                        <p>No cases found matching your search criteria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
